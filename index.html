@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f3ed" />
+  <meta name="description" content="Meet Luma: feel-good beauty for your everyday ritual." />
+  <title>Luma — Your daily dose of glow</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav wrap">
+      <a class="logo" href="#" aria-label="Luma home">luma<span>®</span></a>
+
+      <nav class="nav-links" id="main-nav" aria-label="Main navigation">
+        <a href="#shop">Shop all</a>
+        <a href="#story">Our philosophy</a>
+        <a href="#ritual">The ritual</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="bag-button" id="open-cart">
+          Bag <span class="bag-count">0</span>
+        </button>
+        <button class="menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow intro-label reveal">A little care. A lot of glow.</div>
+          <h1 class="reveal" style="--delay: 100ms">Good skin.<br />Good mood.<br /><em>All you.</em></h1>
+          <p class="reveal" style="--delay: 180ms">Your daily pause, bottled. Meet feel-good skincare that makes a little room for you.</p>
+          <a href="#shop" class="pill reveal" style="--delay: 240ms">Find your glow <span aria-hidden="true">↗</span></a>
+          <div class="hero-footnote reveal" style="--delay: 300ms">
+            <span class="tiny-orb" aria-hidden="true"></span>
+            Less noise. More you.
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" style="--delay: 150ms">
+          <img
+            id="hero-image"
+            src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&q=85"
+            alt="Beauty bottles arranged in warm natural light"
+            fetchpriority="high"
+          />
+          <div class="seal" aria-hidden="true">YOUR DAILY<b>✳</b>GLOW RITUAL</div>
+          <a href="#shop" class="floating-tag">
+            <div>
+              <span class="eyebrow">Small rituals, big feelings</span>
+              <h3>Meet your new essentials.</h3>
+            </div>
+            <span class="round-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>Beauty at your own pace</span><span aria-hidden="true">✳</span>
+          <span>Your daily moment of care</span><span aria-hidden="true">✳</span>
+          <span>Less noise, more glow</span><span aria-hidden="true">✳</span>
+          <span>Good things take a little care</span><span aria-hidden="true">✳</span>
+        </div>
+        <div class="ticker-group" aria-hidden="true">
+          <span>Beauty at your own pace</span><span>✳</span>
+          <span>Your daily moment of care</span><span>✳</span>
+          <span>Less noise, more glow</span><span>✳</span>
+          <span>Good things take a little care</span><span>✳</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section wrap" id="shop">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">The everyday lineup</p>
+          <h2>Your shelf. Upgraded.</h2>
+        </div>
+        <p>Three little reasons to look forward to your morning routine.</p>
+      </div>
+
+      <div class="products">
+        <article class="product reveal">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=85" alt="Amber serum bottle with a dropper" loading="lazy" />
+            <span class="badge">01 / THE GLOW STEP</span>
+            <button class="add-button" data-product="serum" aria-label="Add Dew Drops serum to bag">
+              Add to bag <span aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="product-title"><h3>Dew Drops</h3><span>$38</span></div>
+          <p>Daily face serum · 30 ml</p>
+        </article>
+
+        <article class="product reveal" style="--delay: 120ms">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85" alt="Minimal skincare products styled on a pastel background" loading="lazy" />
+            <span class="badge">02 / THE SOFT STEP</span>
+            <button class="add-button" data-product="cream" aria-label="Add Cloud Nine cream to bag">
+              Add to bag <span aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="product-title"><h3>Cloud Nine</h3><span>$44</span></div>
+          <p>Everyday face cream · 50 ml</p>
+        </article>
+
+        <article class="product reveal" style="--delay: 240ms">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=85" alt="Skincare essentials arranged on a light surface" loading="lazy" />
+            <span class="badge">03 / THE FRESH STEP</span>
+            <button class="add-button" data-product="cleanser" aria-label="Add Fresh Start cleanser to bag">
+              Add to bag <span aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="product-title"><h3>Fresh Start</h3><span>$28</span></div>
+          <p>Daily gel cleanser · 150 ml</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="story section" id="story">
+      <div class="wrap story-grid">
+        <div class="story-photo reveal">
+          <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=85" alt="Beauty products styled with natural textures" loading="lazy" />
+          <span class="photo-caption">A softer approach to everyday beauty.</span>
+        </div>
+
+        <div class="story-copy">
+          <p class="eyebrow reveal">Beauty, without the noise</p>
+          <h2 class="reveal">Not another step.<br />A moment for you.</h2>
+          <p class="reveal">We believe your bathroom shelf should bring you joy, not homework. Luma is about simple routines, beautiful textures, and finding a little everyday pleasure in taking care of yourself.</p>
+          <a href="#ritual" class="pill light reveal">Discover the ritual <span aria-hidden="true">↗</span></a>
+          <div class="values">
+            <div class="value reveal"><span>01</span><h3>Keep the routine simple.</h3></div>
+            <div class="value reveal"><span>02</span><h3>Make the everyday feel special.</h3></div>
+            <div class="value reveal"><span>03</span><h3>Leave a little room for yourself.</h3></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ritual section wrap" id="ritual">
+      <p class="eyebrow reveal">Your three-step exhale</p>
+      <h2 class="reveal">Slow down. Glow on.</h2>
+
+      <div class="steps">
+        <article class="step reveal">
+          <div class="step-number">01.</div>
+          <h3>A fresh beginning.</h3>
+          <p>Start with Fresh Start. Massage onto damp skin, rinse, and take a breath.</p>
+        </article>
+        <article class="step reveal" style="--delay: 120ms">
+          <div class="step-number">02.</div>
+          <h3>A little dew.</h3>
+          <p>Press a few Dew Drops into clean skin. Give yourself a moment before moving on.</p>
+        </article>
+        <article class="step reveal" style="--delay: 240ms">
+          <div class="step-number">03.</div>
+          <h3>The soft finish.</h3>
+          <p>Finish with Cloud Nine. In the morning, follow with your favorite sunscreen.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="closing reveal">
+        <p class="eyebrow">Meet your next favorite ritual</p>
+        <h2>A good day starts<br />with a little you-time.</h2>
+        <a class="pill" href="#shop">Shop the essentials <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="footer-top">
+      <a class="logo" href="#" aria-label="Luma home">luma<span>®</span></a>
+      <p>A little care looks good on you.</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Luma. Beauty at your own pace.</span>
+      <nav aria-label="Footer navigation">
+        <a href="#shop">Shop</a>
+        <a href="#story">Our philosophy</a>
+        <a href="#ritual">The ritual</a>
+      </nav>
+    </div>
+  </footer>
+
+  <dialog id="cart" aria-labelledby="cart-title">
+    <div class="cart-shell">
+      <div class="cart-head">
+        <h2 id="cart-title">Your little luxuries.</h2>
+        <button class="close-cart" aria-label="Close shopping bag">×</button>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-total"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <p class="cart-note">Demo shopping bag. No payment will be taken. Connect your store’s checkout to start accepting orders.</p>
+    </div>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+ 
+</body>
+</html>
