@@ -1,223 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f6f3ed" />
-  <meta name="description" content="Meet Luma: feel-good beauty for your everyday ritual." />
-  <title>Luma — Your daily dose of glow</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Zed's Café - Artisan Coffee & Good Vibes. Where every cup tells a story.">
+    <meta name="theme-color" content="#0f0f1a">
+    <title>Zed's Café | Artisan Coffee & Good Vibes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
-  <div class="progress" aria-hidden="true"></div>
 
-  <header>
-    <div class="nav wrap">
-      <a class="logo" href="#" aria-label="Luma home">luma<span>®</span></a>
-
-      <nav class="nav-links" id="main-nav" aria-label="Main navigation">
-        <a href="#shop">Shop all</a>
-        <a href="#story">Our philosophy</a>
-        <a href="#ritual">The ritual</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="bag-button" id="open-cart">
-          Bag <span class="bag-count">0</span>
-        </button>
-        <button class="menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero wrap">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow intro-label reveal">A little care. A lot of glow.</div>
-          <h1 class="reveal" style="--delay: 100ms">Good skin.<br />Good mood.<br /><em>All you.</em></h1>
-          <p class="reveal" style="--delay: 180ms">Your daily pause, bottled. Meet feel-good skincare that makes a little room for you.</p>
-          <a href="#shop" class="pill reveal" style="--delay: 240ms">Find your glow <span aria-hidden="true">↗</span></a>
-          <div class="hero-footnote reveal" style="--delay: 300ms">
-            <span class="tiny-orb" aria-hidden="true"></span>
-            Less noise. More you.
-          </div>
-        </div>
-
-        <div class="hero-visual reveal" style="--delay: 150ms">
-          <img
-            id="hero-image"
-            src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&q=85"
-            alt="Beauty bottles arranged in warm natural light"
-            fetchpriority="high"
-          />
-          <div class="seal" aria-hidden="true">YOUR DAILY<b>✳</b>GLOW RITUAL</div>
-          <a href="#shop" class="floating-tag">
-            <div>
-              <span class="eyebrow">Small rituals, big feelings</span>
-              <h3>Meet your new essentials.</h3>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="coffee-cup">
+                <div class="steam">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="cup-body"></div>
+                <div class="cup-handle"></div>
+                <div class="saucer"></div>
             </div>
-            <span class="round-arrow" aria-hidden="true">↗</span>
-          </a>
+            <p class="loading-text">Brewing your experience...</p>
         </div>
-      </div>
-    </section>
-
-    <div class="ticker">
-      <div class="ticker-track">
-        <div class="ticker-group">
-          <span>Beauty at your own pace</span><span aria-hidden="true">✳</span>
-          <span>Your daily moment of care</span><span aria-hidden="true">✳</span>
-          <span>Less noise, more glow</span><span aria-hidden="true">✳</span>
-          <span>Good things take a little care</span><span aria-hidden="true">✳</span>
-        </div>
-        <div class="ticker-group" aria-hidden="true">
-          <span>Beauty at your own pace</span><span>✳</span>
-          <span>Your daily moment of care</span><span>✳</span>
-          <span>Less noise, more glow</span><span>✳</span>
-          <span>Good things take a little care</span><span>✳</span>
-        </div>
-      </div>
     </div>
 
-    <section class="section wrap" id="shop">
-      <div class="section-heading reveal">
-        <div>
-          <p class="eyebrow">The everyday lineup</p>
-          <h2>Your shelf. Upgraded.</h2>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-main">Zed's</span>
+                <span class="logo-cafe">café</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#specials" class="nav-link">Specials</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="#visit" class="nav-link">Visit Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
         </div>
-        <p>Three little reasons to look forward to your morning routine.</p>
-      </div>
+    </nav>
 
-      <div class="products">
-        <article class="product reveal">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=85" alt="Amber serum bottle with a dropper" loading="lazy" />
-            <span class="badge">01 / THE GLOW STEP</span>
-            <button class="add-button" data-product="serum" aria-label="Add Dew Drops serum to bag">
-              Add to bag <span aria-hidden="true">+</span>
-            </button>
-          </div>
-          <div class="product-title"><h3>Dew Drops</h3><span>$38</span></div>
-          <p>Daily face serum · 30 ml</p>
-        </article>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
 
-        <article class="product reveal" style="--delay: 120ms">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85" alt="Minimal skincare products styled on a pastel background" loading="lazy" />
-            <span class="badge">02 / THE SOFT STEP</span>
-            <button class="add-button" data-product="cream" aria-label="Add Cloud Nine cream to bag">
-              Add to bag <span aria-hidden="true">+</span>
-            </button>
-          </div>
-          <div class="product-title"><h3>Cloud Nine</h3><span>$44</span></div>
-          <p>Everyday face cream · 50 ml</p>
-        </article>
-
-        <article class="product reveal" style="--delay: 240ms">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=85" alt="Skincare essentials arranged on a light surface" loading="lazy" />
-            <span class="badge">03 / THE FRESH STEP</span>
-            <button class="add-button" data-product="cleanser" aria-label="Add Fresh Start cleanser to bag">
-              Add to bag <span aria-hidden="true">+</span>
-            </button>
-          </div>
-          <div class="product-title"><h3>Fresh Start</h3><span>$28</span></div>
-          <p>Daily gel cleanser · 150 ml</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="story section" id="story">
-      <div class="wrap story-grid">
-        <div class="story-photo reveal">
-          <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=85" alt="Beauty products styled with natural textures" loading="lazy" />
-          <span class="photo-caption">A softer approach to everyday beauty.</span>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1447933601403-56dc2df4e0db?w=1200&q=75')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200&q=75')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=75')"></div>
         </div>
-
-        <div class="story-copy">
-          <p class="eyebrow reveal">Beauty, without the noise</p>
-          <h2 class="reveal">Not another step.<br />A moment for you.</h2>
-          <p class="reveal">We believe your bathroom shelf should bring you joy, not homework. Luma is about simple routines, beautiful textures, and finding a little everyday pleasure in taking care of yourself.</p>
-          <a href="#ritual" class="pill light reveal">Discover the ritual <span aria-hidden="true">↗</span></a>
-          <div class="values">
-            <div class="value reveal"><span>01</span><h3>Keep the routine simple.</h3></div>
-            <div class="value reveal"><span>02</span><h3>Make the everyday feel special.</h3></div>
-            <div class="value reveal"><span>03</span><h3>Leave a little room for yourself.</h3></div>
-          </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-welcome anim-fade">Welcome to</p>
+            <h1 class="hero-title">
+                <span class="title-zed anim-letter" style="--delay:0.3s">Z</span><span class="title-zed anim-letter" style="--delay:0.4s">e</span><span class="title-zed anim-letter" style="--delay:0.5s">d</span><span class="title-zed anim-letter" style="--delay:0.6s">'</span><span class="title-zed anim-letter" style="--delay:0.7s">s</span>
+                <span class="title-cafe anim-fade" style="--delay:1s">Café</span>
+            </h1>
+            <div class="hero-divider anim-fade" style="--delay:1.1s">
+                <span class="line"></span>
+                <i class="fas fa-coffee"></i>
+                <span class="line"></span>
+            </div>
+            <p class="hero-tagline anim-fade" style="--delay:1.2s">Where Every Cup Tells a Story</p>
+            <div class="hero-cta anim-fade" style="--delay:1.4s">
+                <a href="#menu" class="btn btn-primary">
+                    <span>Explore Menu</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#about" class="btn btn-ghost">Our Story</a>
+            </div>
         </div>
-      </div>
+        <div class="scroll-indicator">
+            <a href="#about" aria-label="Scroll down">
+                <div class="mouse"><div class="wheel"></div></div>
+                <span>Scroll</span>
+            </a>
+        </div>
     </section>
 
-    <section class="ritual section wrap" id="ritual">
-      <p class="eyebrow reveal">Your three-step exhale</p>
-      <h2 class="reveal">Slow down. Glow on.</h2>
-
-      <div class="steps">
-        <article class="step reveal">
-          <div class="step-number">01.</div>
-          <h3>A fresh beginning.</h3>
-          <p>Start with Fresh Start. Massage onto damp skin, rinse, and take a breath.</p>
-        </article>
-        <article class="step reveal" style="--delay: 120ms">
-          <div class="step-number">02.</div>
-          <h3>A little dew.</h3>
-          <p>Press a few Dew Drops into clean skin. Give yourself a moment before moving on.</p>
-        </article>
-        <article class="step reveal" style="--delay: 240ms">
-          <div class="step-number">03.</div>
-          <h3>The soft finish.</h3>
-          <p>Finish with Cloud Nine. In the morning, follow with your favorite sunscreen.</p>
-        </article>
-      </div>
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images reveal-left">
+                    <div class="img-main">
+                        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=75" alt="Zed's Café cozy interior with warm lighting" loading="lazy">
+                    </div>
+                    <div class="img-accent">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400&q=75" alt="Barista crafting latte art" loading="lazy">
+                    </div>
+                    <div class="badge-years">
+                        <span class="badge-number" data-count="10">0</span>
+                        <span class="badge-text">Years of<br>Excellence</span>
+                    </div>
+                </div>
+                <div class="about-content reveal-right">
+                    <span class="tag">Our Story</span>
+                    <h2 class="heading">A Passion for Perfect Coffee</h2>
+                    <div class="heading-line"><span></span><i class="fas fa-seedling"></i><span></span></div>
+                    <p>At Zed's Café, we believe that coffee is more than just a beverage — it's an experience. Founded with a passion for bringing people together over exceptional coffee, our café has become a beloved gathering place in the heart of the city.</p>
+                    <p>Every bean is carefully selected from sustainable farms around the world, roasted to perfection in small batches, and crafted into memorable drinks by our skilled baristas.</p>
+                    <div class="features">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                            <div><h4>100% Organic</h4><p>Sustainably sourced beans</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-award"></i></div>
+                            <div><h4>Award Winning</h4><p>Best café 2024</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                            <div><h4>Made with Love</h4><p>Every cup, every time</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="wrap">
-      <div class="closing reveal">
-        <p class="eyebrow">Meet your next favorite ritual</p>
-        <h2>A good day starts<br />with a little you-time.</h2>
-        <a class="pill" href="#shop">Shop the essentials <span aria-hidden="true">↗</span></a>
-      </div>
+    <!-- Stats Banner -->
+    <section class="stats">
+        <div class="stats-bg"></div>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat reveal-up">
+                    <i class="fas fa-mug-hot"></i>
+                    <span class="stat-num" data-count="50000">0</span>
+                    <span class="stat-label">Cups Served</span>
+                </div>
+                <div class="stat reveal-up">
+                    <i class="fas fa-smile"></i>
+                    <span class="stat-num" data-count="12000">0</span>
+                    <span class="stat-label">Happy Guests</span>
+                </div>
+                <div class="stat reveal-up">
+                    <i class="fas fa-globe-americas"></i>
+                    <span class="stat-num" data-count="25">0</span>
+                    <span class="stat-label">Bean Origins</span>
+                </div>
+                <div class="stat reveal-up">
+                    <i class="fas fa-star"></i>
+                    <span class="stat-num" data-count="15">0</span>
+                    <span class="stat-label">Awards Won</span>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer class="wrap">
-    <div class="footer-top">
-      <a class="logo" href="#" aria-label="Luma home">luma<span>®</span></a>
-      <p>A little care looks good on you.</p>
+    <!-- Menu Section -->
+    <section id="menu" class="section menu-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">Our Menu</span>
+                <h2 class="heading">Crafted With Care</h2>
+                <div class="heading-line"><span></span><i class="fas fa-coffee"></i><span></span></div>
+                <p class="subtext">Discover our handcrafted beverages and artisan treats</p>
+            </div>
+
+            <div class="menu-filters reveal-up">
+                <button class="filter active" data-filter="all">All</button>
+                <button class="filter" data-filter="coffee">Coffee</button>
+                <button class="filter" data-filter="tea">Tea</button>
+                <button class="filter" data-filter="pastry">Pastries</button>
+                <button class="filter" data-filter="smoothie">Smoothies</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+
+                <div class="menu-card reveal-up" data-category="coffee">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=75" alt="Classic Espresso" loading="lazy">
+                        <span class="card-badge">Popular</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Classic Espresso</h3>
+                            <span class="card-price">$4.50</span>
+                        </div>
+                        <p>Rich, bold, and perfectly extracted shot of our signature blend</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="coffee">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&q=75" alt="Velvet Cappuccino" loading="lazy">
+                        <span class="card-badge hot">Bestseller</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Velvet Cappuccino</h3>
+                            <span class="card-price">$5.50</span>
+                        </div>
+                        <p>Silky steamed milk with a double shot of espresso, topped with art</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="coffee">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=75" alt="Caramel Latte" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Caramel Latte</h3>
+                            <span class="card-price">$6.00</span>
+                        </div>
+                        <p>Smooth espresso with caramel drizzle and perfectly steamed milk</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="coffee">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=400&q=75" alt="Mocha Delight" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Mocha Delight</h3>
+                            <span class="card-price">$6.25</span>
+                        </div>
+                        <p>Rich chocolate meets espresso with steamed milk and whipped cream</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="tea">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=75" alt="Matcha Latte" loading="lazy">
+                        <span class="card-badge fresh">New</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Matcha Latte</h3>
+                            <span class="card-price">$5.75</span>
+                        </div>
+                        <p>Ceremonial grade matcha whisked with oat milk and a touch of honey</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="tea">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&q=75" alt="Spiced Chai Latte" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Spiced Chai Latte</h3>
+                            <span class="card-price">$5.25</span>
+                        </div>
+                        <p>Aromatic blend of warm spices with black tea and creamy frothed milk</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="pastry">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=75" alt="Butter Croissant" loading="lazy">
+                        <span class="card-badge">Popular</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Butter Croissant</h3>
+                            <span class="card-price">$3.75</span>
+                        </div>
+                        <p>Flaky, golden layers of buttery pastry, baked fresh every morning</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="pastry">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=75" alt="Dark Chocolate Cake" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Dark Chocolate Cake</h3>
+                            <span class="card-price">$6.50</span>
+                        </div>
+                        <p>Decadent layers of moist chocolate cake with rich ganache frosting</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card reveal-up" data-category="smoothie">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&q=75" alt="Berry Bliss Smoothie" loading="lazy">
+                        <span class="card-badge fresh">New</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top">
+                            <h3>Berry Bliss Smoothie</h3>
+                            <span class="card-price">$7.00</span>
+                        </div>
+                        <p>Fresh strawberries, blueberries, and banana blended with Greek yogurt</p>
+                        <div class="card-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Specials Section -->
+    <section id="specials" class="section specials">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">Limited Time</span>
+                <h2 class="heading">Today's Specials</h2>
+                <div class="heading-line"><span></span><i class="fas fa-star"></i><span></span></div>
+            </div>
+
+            <div class="specials-list">
+                <div class="special-card reveal-left">
+                    <div class="special-img">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=600&q=75" alt="Pumpkin Spice Latte" loading="lazy">
+                        <div class="special-badge">Seasonal</div>
+                    </div>
+                    <div class="special-info">
+                        <span class="special-tag">🍂 Autumn Favorite</span>
+                        <h3>Pumpkin Spice Latte</h3>
+                        <p>Our signature autumn blend with real pumpkin puree, warm spices, espresso, and topped with whipped cream and cinnamon dust.</p>
+                        <span class="special-price">$6.00</span>
+                    </div>
+                </div>
+
+                <div class="special-card reverse reveal-right">
+                    <div class="special-img">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=75" alt="Lavender Honey Latte" loading="lazy">
+                        <div class="special-badge">New</div>
+                    </div>
+                    <div class="special-info">
+                        <span class="special-tag">🌿 Chef's Creation</span>
+                        <h3>Lavender Honey Latte</h3>
+                        <p>Delicate floral lavender syrup paired with raw honey, espresso, and steamed oat milk. A truly unique and calming experience.</p>
+                        <span class="special-price">$6.75</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">Gallery</span>
+                <h2 class="heading">Moments at Zed's</h2>
+                <div class="heading-line"><span></span><i class="fas fa-camera"></i><span></span></div>
+            </div>
+            <div class="gallery-grid reveal-up">
+                <div class="gallery-item gi-large">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800&q=75" alt="Zed's Café cozy interior" loading="lazy">
+                    <div class="gi-overlay"><i class="fas fa-expand"></i><span>Our Space</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=75" alt="Beautiful latte art" loading="lazy">
+                    <div class="gi-overlay"><i class="fas fa-expand"></i><span>Latte Art</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1432457990754-c8b5f21448de?w=400&q=75" alt="Fresh pastries display" loading="lazy">
+                    <div class="gi-overlay"><i class="fas fa-expand"></i><span>Fresh Pastries</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400&q=75" alt="Premium coffee beans" loading="lazy">
+                    <div class="gi-overlay"><i class="fas fa-expand"></i><span>Premium Beans</span></div>
+                </div>
+                <div class="gallery-item gi-tall">
+                    <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=400&q=75" alt="Our skilled barista" loading="lazy">
+                    <div class="gi-overlay"><i class="fas fa-expand"></i><span>Our Baristas</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559305616-3f99cd43e353?w=400&q=75" alt="Evening ambiance at Zed's" loading="lazy">
+                    <div class="gi-overlay"><i class="fas fa-expand"></i><span>Evening Vibes</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section reviews">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">Testimonials</span>
+                <h2 class="heading">What Our Guests Say</h2>
+                <div class="heading-line"><span></span><i class="fas fa-quote-right"></i><span></span></div>
+            </div>
+            <div class="review-slider reveal-up">
+                <div class="review-track" id="reviewTrack">
+
+                    <div class="review-card">
+                        <div class="review-quote"><i class="fas fa-quote-left"></i></div>
+                        <p>"Zed's Café has become my second home. The atmosphere is incredibly warm and inviting, and the coffee is hands down the best in the city. I can't start my day without their cappuccino!"</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=75" alt="Sarah Mitchell" loading="lazy">
+                            <div>
+                                <h4>Sarah Mitchell</h4>
+                                <span>Regular Guest</span>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-quote"><i class="fas fa-quote-left"></i></div>
+                        <p>"As a coffee enthusiast, I'm incredibly picky about my brew. Zed's Café exceeded all my expectations. Their single-origin pour-over is a masterpiece. The baristas truly understand their craft."</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=75" alt="James Kim" loading="lazy">
+                            <div>
+                                <h4>James Kim</h4>
+                                <span>Coffee Enthusiast</span>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-quote"><i class="fas fa-quote-left"></i></div>
+                        <p>"I brought my team here for a meeting and everyone was blown away. The pastries are divine, the coffee is perfect, and the ambiance makes you never want to leave. Highly recommended!"</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=75" alt="Emily Roberts" loading="lazy">
+                            <div>
+                                <h4>Emily Roberts</h4>
+                                <span>Business Owner</span>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-quote"><i class="fas fa-quote-left"></i></div>
+                        <p>"The matcha latte here changed my life! I've tried matcha at dozens of cafés, but Zed's uses real ceremonial grade powder and you can taste the difference. The cozy vibe is a huge bonus."</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=75" alt="Mia Chen" loading="lazy">
+                            <div>
+                                <h4>Mia Chen</h4>
+                                <span>Food Blogger</span>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="review-nav">
+                    <button class="rev-btn" id="revPrev" aria-label="Previous review"><i class="fas fa-chevron-left"></i></button>
+                    <div class="rev-dots" id="revDots"></div>
+                    <button class="rev-btn" id="revNext" aria-label="Next review"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Us Section -->
+    <section id="visit" class="section visit">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">Find Us</span>
+                <h2 class="heading">Visit Zed's Café</h2>
+                <div class="heading-line"><span></span><i class="fas fa-map-pin"></i><span></span></div>
+            </div>
+            <div class="visit-grid">
+                <div class="visit-info reveal-left">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Opening Hours</h4>
+                            <p>Mon – Fri: 7:00 AM – 10:00 PM</p>
+                            <p>Sat – Sun: 8:00 AM – 11:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>123 Coffee Street, Downtown</p>
+                            <p>New York, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Get in Touch</h4>
+                            <p>+1 (555) 123-4567</p>
+                            <p>hello@zedscafe.com</p>
+                        </div>
+                    </div>
+                    <div class="social-row">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="visit-map reveal-right">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30596698663!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1690000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Zed's Café location on Google Maps"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C480,120 960,0 1440,60 L1440,100 L0,100 Z" fill="currentColor"/></svg>
+        </div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">
+                        <span class="logo-main">Zed's</span>
+                        <span class="logo-cafe">café</span>
+                    </a>
+                    <p>Where every cup tells a story. Experience the art of coffee at Zed's Café — your neighborhood's favorite gathering place.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#menu">Our Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#visit">Visit Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates and exclusive offers.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email" id="newsletterEmail" aria-label="Email for newsletter">
+                        <button id="newsletterBtn" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zed's Café. All rights reserved. Made with <i class="fas fa-heart heart-beat"></i> and lots of coffee.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="btt" id="btt" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lb-close" id="lbClose" aria-label="Close lightbox"><i class="fas fa-times"></i></button>
+        <img src="" alt="Gallery preview" id="lbImage">
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> Luma. Beauty at your own pace.</span>
-      <nav aria-label="Footer navigation">
-        <a href="#shop">Shop</a>
-        <a href="#story">Our philosophy</a>
-        <a href="#ritual">The ritual</a>
-      </nav>
-    </div>
-  </footer>
 
-  <dialog id="cart" aria-labelledby="cart-title">
-    <div class="cart-shell">
-      <div class="cart-head">
-        <h2 id="cart-title">Your little luxuries.</h2>
-        <button class="close-cart" aria-label="Close shopping bag">×</button>
-      </div>
-      <div class="cart-items"></div>
-      <div class="cart-total"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
-      <p class="cart-note">Demo shopping bag. No payment will be taken. Connect your store’s checkout to start accepting orders.</p>
-    </div>
-  </dialog>
+    <!-- Toast -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
 
-  <div class="toast" role="status" aria-live="polite"></div>
-
-  <script src="script.js"></script>
- 
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,218 +1,341 @@
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const revealElements = document.querySelectorAll(".reveal");
+/* ===========================================
+   ZED'S CAFÉ — Frontend Scripts
+   =========================================== */
 
-    if ("IntersectionObserver" in window && !reducedMotion.matches) {
-      document.documentElement.classList.add("motion");
+(function () {
+    'use strict';
 
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      revealElements.forEach(element => observer.observe(element));
-    }
-
-    // Scroll progress and subtle hero parallax.
-    const progress = document.querySelector(".progress");
-    const heroImage = document.querySelector("#hero-image");
-    const heroVisual = document.querySelector(".hero-visual");
-    let scrollQueued = false;
-
-    function updateScroll() {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = `${maxScroll > 0 ? window.scrollY / maxScroll * 100 : 0}%`;
-
-      if (!reducedMotion.matches && heroVisual.getBoundingClientRect().bottom > 0) {
-        heroImage.style.transform = `translateY(${Math.min(window.scrollY * 0.12, 65)}px)`;
-      } else if (reducedMotion.matches) {
-        heroImage.style.transform = "";
-      }
-
-      scrollQueued = false;
-    }
-
-    function queueScrollUpdate() {
-      if (!scrollQueued) {
-        scrollQueued = true;
-        requestAnimationFrame(updateScroll);
-      }
-    }
-
-    window.addEventListener("scroll", queueScrollUpdate, { passive: true });
-    window.addEventListener("resize", queueScrollUpdate);
-    window.addEventListener("load", updateScroll);
-    reducedMotion.addEventListener("change", () => {
-      if (reducedMotion.matches) {
-        revealElements.forEach(element => element.classList.add("visible"));
-      }
-      updateScroll();
+    // ---- PRELOADER ----
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            document.getElementById('preloader').classList.add('done');
+        }, 1800);
     });
-    updateScroll();
 
-    // Mobile navigation.
-    const menuButton = document.querySelector(".menu-button");
-    const navigation = document.querySelector("#main-nav");
+    // ---- NAVBAR SCROLL ----
+    const navbar = document.getElementById('navbar');
+    const btt = document.getElementById('btt');
+
+    function onScroll() {
+        const y = window.scrollY;
+        navbar.classList.toggle('scrolled', y > 60);
+        btt.classList.toggle('show', y > 500);
+        updateActiveNav();
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ---- ACTIVE NAV ----
+    const navAnchors = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveNav() {
+        const scrollY = window.scrollY + 200;
+        sections.forEach(function (sec) {
+            const top = sec.offsetTop;
+            const h = sec.offsetHeight;
+            const id = sec.id;
+            if (scrollY >= top && scrollY < top + h) {
+                navAnchors.forEach(function (a) {
+                    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+                });
+            }
+        });
+    }
+
+    // ---- MOBILE MENU ----
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const overlay = document.getElementById('mobileOverlay');
 
     function closeMenu() {
-      navigation.classList.remove("open");
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.textContent = "Menu";
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    function openMenu() {
+        hamburger.classList.add('open');
+        navLinks.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
     }
 
-    menuButton.addEventListener("click", () => {
-      const open = navigation.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.textContent = open ? "Close" : "Menu";
-    });
-
-    navigation.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && navigation.classList.contains("open")) {
-        closeMenu();
-        menuButton.focus();
-      }
-    });
-
-    // Demo product catalog and persistent shopping bag.
-    const catalog = {
-      serum: {
-        name: "Dew Drops",
-        price: 38,
-        image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=160&q=80"
-      },
-      cream: {
-        name: "Cloud Nine",
-        price: 44,
-        image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=160&q=80"
-      },
-      cleanser: {
-        name: "Fresh Start",
-        price: 28,
-        image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=160&q=80"
-      }
-    };
-
-    let bag = {};
-    try {
-      const saved = JSON.parse(localStorage.getItem("luma-bag") || "{}");
-      if (saved && typeof saved === "object") {
-        Object.keys(catalog).forEach(id => {
-          if (Number.isInteger(saved[id]) && saved[id] > 0 && saved[id] <= 99) {
-            bag[id] = saved[id];
-          }
-        });
-      }
-    } catch {
-      // Storage may be unavailable; the bag still works for this visit.
-    }
-
-    const cart = document.querySelector("#cart");
-    const cartItems = document.querySelector(".cart-items");
-    const toast = document.querySelector(".toast");
-    const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
-    let toastTimer;
-
-    function notify(message) {
-      clearTimeout(toastTimer);
-      toast.textContent = message;
-      toast.classList.add("show");
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
-    }
-
-    function renderBag(focusId) {
-      let total = 0;
-      let count = 0;
-      cartItems.replaceChildren();
-
-      Object.entries(bag).forEach(([id, quantity]) => {
-        const product = catalog[id];
-        total += product.price * quantity;
-        count += quantity;
-
-        const row = document.createElement("article");
-        row.className = "cart-item";
-        row.innerHTML = `
-          <img src="${product.image}" alt="${product.name}">
-          <div>
-            <h3>${product.name}</h3>
-            <p>Qty: ${quantity} · ${money.format(product.price)}</p>
-            <button class="remove-item" data-remove="${id}" aria-label="Remove one ${product.name}">Remove one</button>
-          </div>
-          <span>${money.format(product.price * quantity)}</span>
-        `;
-        cartItems.append(row);
-      });
-
-      if (!count) {
-        const empty = document.createElement("p");
-        empty.className = "empty-cart";
-        empty.textContent = "Your bag is waiting for a little glow. Explore the essentials and find your favorites.";
-        cartItems.append(empty);
-      }
-
-      document.querySelector(".bag-count").textContent = count;
-      document.querySelector("#open-cart").setAttribute("aria-label", `Open shopping bag, ${count} items`);
-      document.querySelector("#subtotal").textContent = money.format(total);
-
-      try {
-        localStorage.setItem("luma-bag", JSON.stringify(bag));
-      } catch {}
-
-      if (focusId) {
-        const nextFocus = cartItems.querySelector(`[data-remove="${focusId}"]`)
-          || cartItems.querySelector(".remove-item")
-          || document.querySelector(".close-cart");
-        nextFocus.focus();
-      }
-    }
-
-    document.querySelectorAll("[data-product]").forEach(button => {
-      button.addEventListener("click", () => {
-        const id = button.dataset.product;
-        if ((bag[id] || 0) >= 99) {
-          notify("You’ve reached the limit for this item.");
-          return;
+    hamburger.addEventListener('click', function () {
+        if (navLinks.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
         }
-
-        bag[id] = (bag[id] || 0) + 1;
-        renderBag();
-        notify(`${catalog[id].name} added to your bag`);
-      });
     });
 
-    cartItems.addEventListener("click", event => {
-      const button = event.target.closest("[data-remove]");
-      if (!button) return;
-      const id = button.dataset.remove;
-      bag[id] -= 1;
-      if (bag[id] <= 0) delete bag[id];
-      renderBag(id);
+    overlay.addEventListener('click', closeMenu);
+
+    navAnchors.forEach(function (a) {
+        a.addEventListener('click', closeMenu);
     });
 
-    document.querySelector("#open-cart").addEventListener("click", () => {
-      closeMenu();
-      cart.showModal();
-      document.body.classList.add("locked");
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
     });
 
-    document.querySelector(".close-cart").addEventListener("click", () => cart.close());
-    cart.addEventListener("close", () => document.body.classList.remove("locked"));
+    // ---- HERO SLIDER ----
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let heroIndex = 0;
 
-    cart.addEventListener("click", event => {
-      const bounds = cart.getBoundingClientRect();
-      if (
-        event.target === cart &&
-        (event.clientX < bounds.left || event.clientX > bounds.right ||
-         event.clientY < bounds.top || event.clientY > bounds.bottom)
-      ) cart.close();
+    function nextSlide() {
+        heroSlides[heroIndex].classList.remove('active');
+        heroIndex = (heroIndex + 1) % heroSlides.length;
+        heroSlides[heroIndex].classList.add('active');
+    }
+    setInterval(nextSlide, 6000);
+
+    // ---- HERO PARALLAX ----
+    var heroContent = document.querySelector('.hero-content');
+    var ticking = false;
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                var y = window.scrollY;
+                if (y < window.innerHeight && heroContent) {
+                    heroContent.style.transform = 'translateY(' + (y * 0.25) + 'px)';
+                    heroContent.style.opacity = Math.max(0, 1 - y / (window.innerHeight * 0.7));
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // ---- SCROLL REVEAL ----
+    var reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+
+    function checkReveal() {
+        var wh = window.innerHeight;
+        reveals.forEach(function (el) {
+            var top = el.getBoundingClientRect().top;
+            if (top < wh - 80) {
+                el.classList.add('revealed');
+            }
+        });
+    }
+    window.addEventListener('scroll', checkReveal, { passive: true });
+    window.addEventListener('load', checkReveal);
+    // Also trigger after preloader hides
+    setTimeout(checkReveal, 2000);
+
+    // ---- COUNTER ANIMATION ----
+    var counters = document.querySelectorAll('[data-count]');
+    var counted = new Set();
+
+    function animateCounters() {
+        var wh = window.innerHeight;
+        counters.forEach(function (el) {
+            if (counted.has(el)) return;
+            var top = el.getBoundingClientRect().top;
+            if (top < wh - 60) {
+                counted.add(el);
+                var target = parseInt(el.getAttribute('data-count'), 10);
+                var start = 0;
+                var duration = 2000;
+                var steps = 60;
+                var increment = target / steps;
+                var step = 0;
+                var timer = setInterval(function () {
+                    step++;
+                    start += increment;
+                    if (step >= steps) {
+                        el.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = Math.floor(start).toLocaleString();
+                    }
+                }, duration / steps);
+            }
+        });
+    }
+    window.addEventListener('scroll', animateCounters, { passive: true });
+    window.addEventListener('load', animateCounters);
+    setTimeout(animateCounters, 2200);
+
+    // ---- MENU FILTER ----
+    var filters = document.querySelectorAll('.filter');
+    var cards = document.querySelectorAll('.menu-card');
+
+    filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            filters.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+
+            var cat = btn.getAttribute('data-filter');
+            var delay = 0;
+
+            cards.forEach(function (card) {
+                var c = card.getAttribute('data-category');
+                if (cat === 'all' || c === cat) {
+                    card.classList.remove('hide');
+                    card.classList.add('show');
+                    card.style.animationDelay = delay + 's';
+                    delay += 0.08;
+                } else {
+                    card.classList.add('hide');
+                    card.classList.remove('show');
+                }
+            });
+        });
     });
 
-    document.querySelector("#year").textContent = new Date().getFullYear();
-    renderBag();
+    // ---- REVIEW SLIDER ----
+    var track = document.getElementById('reviewTrack');
+    var revCards = document.querySelectorAll('.review-card');
+    var revPrev = document.getElementById('revPrev');
+    var revNext = document.getElementById('revNext');
+    var dotsWrap = document.getElementById('revDots');
+    var revIndex = 0;
+    var autoRevTimer;
+
+    // Create dots
+    revCards.forEach(function (_, i) {
+        var d = document.createElement('button');
+        d.classList.add('rev-dot');
+        d.setAttribute('aria-label', 'Go to review ' + (i + 1));
+        if (i === 0) d.classList.add('active');
+        d.addEventListener('click', function () { goToReview(i); });
+        dotsWrap.appendChild(d);
+    });
+
+    function goToReview(i) {
+        revIndex = i;
+        track.style.transform = 'translateX(-' + (i * 100) + '%)';
+        var dots = dotsWrap.querySelectorAll('.rev-dot');
+        dots.forEach(function (d, idx) {
+            d.classList.toggle('active', idx === i);
+        });
+    }
+
+    revNext.addEventListener('click', function () {
+        goToReview((revIndex + 1) % revCards.length);
+        resetAutoRev();
+    });
+    revPrev.addEventListener('click', function () {
+        goToReview((revIndex - 1 + revCards.length) % revCards.length);
+        resetAutoRev();
+    });
+
+    function startAutoRev() {
+        autoRevTimer = setInterval(function () {
+            goToReview((revIndex + 1) % revCards.length);
+        }, 5000);
+    }
+    function resetAutoRev() {
+        clearInterval(autoRevTimer);
+        startAutoRev();
+    }
+    startAutoRev();
+
+    // Touch swipe for reviews
+    (function () {
+        var startX = 0;
+        var diff = 0;
+
+        track.addEventListener('touchstart', function (e) {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function (e) {
+            diff = e.touches[0].clientX - startX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function () {
+            if (Math.abs(diff) > 50) {
+                if (diff < 0) {
+                    goToReview((revIndex + 1) % revCards.length);
+                } else {
+                    goToReview((revIndex - 1 + revCards.length) % revCards.length);
+                }
+                resetAutoRev();
+            }
+            diff = 0;
+        });
+    })();
+
+    // ---- GALLERY LIGHTBOX ----
+    var lightbox = document.getElementById('lightbox');
+    var lbImage = document.getElementById('lbImage');
+    var lbClose = document.getElementById('lbClose');
+
+    document.querySelectorAll('.gallery-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+            var src = item.querySelector('img').src;
+            lbImage.src = src;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+
+    // ---- BACK TO TOP ----
+    btt.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ---- TOAST ----
+    var toastEl = document.getElementById('toast');
+    var toastMsg = document.getElementById('toastMsg');
+    var toastTimer;
+
+    function showToast(msg) {
+        toastMsg.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+            toastEl.classList.remove('show');
+        }, 2800);
+    }
+
+    // ---- NEWSLETTER ----
+    var nlBtn = document.getElementById('newsletterBtn');
+    var nlInput = document.getElementById('newsletterEmail');
+
+    nlBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var val = nlInput.value.trim();
+        if (val && val.indexOf('@') > 0) {
+            showToast('Subscribed successfully! ☕');
+            nlInput.value = '';
+        } else {
+            showToast('Please enter a valid email.');
+        }
+    });
+
+    // ---- SMOOTH ANCHOR SCROLL (iOS fix) ----
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                var offset = navbar.offsetHeight;
+                var top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ---- CONSOLE ----
+    console.log('%c☕ Zed\'s Café', 'color:#c8a97e;font-size:20px;font-weight:bold');
+    console.log('%cWhere every cup tells a story.', 'color:#807590;font-size:12px');
+
+})();
